@@ -56,7 +56,6 @@ public class funcoes {
 
     @RequestMapping(value = "/classificacao")
     @Produces({"application/json"})
-    @Cacheable(value="movieFindCache", key="#cdEquipe")
     public ResponseEntity<List<ClassificacaoRepositorty>> listarClassificacao() {
         ArrayList lista = new ArrayList();
         classificacaoRepositorty.findAllByOrderByPosAsc().forEach((i) -> {
