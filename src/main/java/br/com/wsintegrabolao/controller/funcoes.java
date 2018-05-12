@@ -6,7 +6,6 @@
 package br.com.wsintegrabolao.controller;
 
 import br.com.wsintegrabolao.entity.Equipe;
-import br.com.wsintegrabolao.repository.ClassificacaoRepositorty;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +20,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import br.com.wsintegrabolao.repository.ClassificacaoRepository;
+import br.com.wsintegrabolao.repository.UsuarioRepository;
 
 /**
  *
@@ -34,13 +35,15 @@ public class funcoes {
     @Autowired
     private EquipeRepository equipeRepository;
     @Autowired
-    private ClassificacaoRepositorty classificacaoRepositorty;
+    private ClassificacaoRepository classificacaoRepositorty;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @RequestMapping(value = "/equipeList")
     @Produces({"application/json"})
     public ResponseEntity<List<Equipe>> listar() {
         ArrayList lista = new ArrayList();
-        equipeRepository.findAll(Sort.by(Sort.Direction.ASC,"sgEquipe")).forEach((i) -> {
+        equipeRepository.findAll(Sort.by(Sort.Direction.ASC, "sgEquipe")).forEach((i) -> {
             lista.add(i);
         });
         return new ResponseEntity<>(lista, HttpStatus.OK);
@@ -49,22 +52,25 @@ public class funcoes {
     @GetMapping(value = "/equipe/{id}")
     @Produces({"application/json"})
     public ResponseEntity<Object> get(@PathVariable("id") String codigo) {
-        Equipe e = equipeRepository.findByCdEquipe(codigo);
-        
-        return genericResponse(e);
+        return genericResponse(equipeRepository.findByCdEquipe(codigo));
     }
 
     @RequestMapping(value = "/classificacao")
     @Produces({"application/json"})
-    public ResponseEntity<List<ClassificacaoRepositorty>> listarClassificacao() {
+    public ResponseEntity<List<ClassificacaoRepository>> listarClassificacao() {
         ArrayList lista = new ArrayList();
         classificacaoRepositorty.findAllByOrderByPosAsc().forEach((i) -> {
             lista.add(i);
         });
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
-    
-    
+
+    @GetMapping(value = "/usuario/{id}")
+    @Produces({"application/json"})
+    public ResponseEntity<Object> getUsuario(@PathVariable("id") String codigo) {
+        return genericResponse(usuarioRepository.findByCdUsuario(codigo));
+    }
+
     private static ResponseEntity<Object> genericResponse(Object ob) {
         if (ob == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

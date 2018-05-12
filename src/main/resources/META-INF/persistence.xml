@@ -2,6 +2,17 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="WSIntegraBolaoRest" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>br.com.wsintegrabolao.entity.Classificacao</class>
+    <class>br.com.wsintegrabolao.entity.ClassificacaoDAO</class>
+    <class>br.com.wsintegrabolao.entity.Classificacaoderrota</class>
+    <class>br.com.wsintegrabolao.entity.Classificacaoempate</class>
+    <class>br.com.wsintegrabolao.entity.Classificacaojogo</class>
+    <class>br.com.wsintegrabolao.entity.Classificacaopg</class>
+    <class>br.com.wsintegrabolao.entity.Classificacaovitoria</class>
+    <class>br.com.wsintegrabolao.entity.Equipe</class>
+    <class>br.com.wsintegrabolao.entity.Posicaousuario</class>
+    <class>br.com.wsintegrabolao.entity.TipousuarioDAO</class>
+    <class>br.com.wsintegrabolao.entity.UsuarioDAO</class>
     <shared-cache-mode>ALL</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://bolao.clmal92lfsbr.sa-east-1.rds.amazonaws.com:5432/bolao"/>

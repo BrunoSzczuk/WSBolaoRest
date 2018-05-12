@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author bruno.szczuk
  */
 @Cacheable("codetable")
-public interface ClassificacaoRepositorty extends JpaRepository<ClassificacaoDAO, String>{
+public interface ClassificacaoRepository extends JpaRepository<ClassificacaoDAO, String>{
     
     List findAllByOrderByPosAsc();
 }
