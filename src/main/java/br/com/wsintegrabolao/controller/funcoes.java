@@ -55,11 +55,11 @@ public class funcoes {
         return genericResponse(equipeRepository.findByCdEquipe(codigo));
     }
 
-    @RequestMapping(value = "/classificacao")
+    @GetMapping(value = "/classificacao")
     @Produces({"application/json"})
     public ResponseEntity<List<ClassificacaoRepository>> listarClassificacao() {
         ArrayList lista = new ArrayList();
-        classificacaoRepositorty.findAllByOrderByPosAsc().forEach((i) -> {
+        classificacaoRepositorty.findByOrderByCastPosAsc().forEach((i) -> {
             lista.add(i);
         });
         return new ResponseEntity<>(lista, HttpStatus.OK);

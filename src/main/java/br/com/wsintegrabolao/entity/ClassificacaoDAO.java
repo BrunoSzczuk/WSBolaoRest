@@ -5,7 +5,6 @@
  */
 package br.com.wsintegrabolao.entity;
 
-
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,11 +27,11 @@ public class ClassificacaoDAO implements Serializable {
 
     @Id
     @Column(name = "cd_equipe", insertable = false, updatable = false)
- 
+
     private String cdEquipe;
 
     @Column(name = "go_pro")
- 
+
     private int golsPro;
 
     public Equipe getEquipe() {
@@ -52,48 +51,48 @@ public class ClassificacaoDAO implements Serializable {
     }
 
     @Column(name = "go_contra")
-    
+
     private int golsContra;
 
     @Column(name = "sd_gols")
-    
+
     private int saldoGols;
 
     @Column(name = "ps_equipe")
-    
+
     private String pos;
 
     @Column(name = "ga_posicao")
-        
+
     private String ganhoPos;
 
     @OneToOne
-    
+
     @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = false, updatable = false)
     private Classificacaopg pontosGanhos;
 
     @ManyToOne
-    
+
     @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = false, updatable = false)
     private Classificacaojogo jogos;
 
     @ManyToOne
-    
+
     @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = false, updatable = false)
     private Classificacaovitoria vitoria;
 
     @ManyToOne
-    
+
     @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = false, updatable = false)
     private Classificacaoempate empate;
 
     @ManyToOne
-    
+
     @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = false, updatable = false)
     private Classificacaoderrota derrota;
 
     @Column(name = "pc_aproveitamento")
-    
+
     private float aproveitamento;
 
     public ClassificacaoDAO() {
